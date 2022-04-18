@@ -49,6 +49,9 @@
     <Reference Include="MaterialDesignThemes.Wpf, Version=3.2.0.1979, Culture=neutral, PublicKeyToken=df2a72020bd7962a, processorArchitecture=MSIL">
       <HintPath>..\packages\MaterialDesignThemes.3.2.0\lib\net45\MaterialDesignThemes.Wpf.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Xaml.Behaviors, Version=1.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Xaml.Behaviors.Wpf.1.1.19\lib\net45\Microsoft.Xaml.Behaviors.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
@@ -72,7 +75,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Views\Controls\Menu\CtrlBurgerMenu_View.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Pages\IndicatorsCompany_View.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Pages\StatisticInfo_View.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -102,9 +113,23 @@
     <Compile Include="Entities\Forecast.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Services\Commands\Base\Command.cs" />
+    <Compile Include="Services\Commands\MenuClick\MyCommand.cs" />
+    <Compile Include="Services\Commands\MenuClick\OpenIndicatorsCompanyViewCommand.cs" />
+    <Compile Include="Services\Commands\MenuClick\OpenStatisticInfoViewCommand.cs" />
     <Compile Include="Services\PageManager.cs" />
+    <Compile Include="ViewModels\Base\ViewModel.cs" />
+    <Compile Include="ViewModels\Controls\Menu\CtrlBurgerMenu_ViewModel.cs" />
+    <Compile Include="ViewModels\Pages\IndicatorsCompany_ViewModel.cs" />
+    <Compile Include="ViewModels\Pages\StatisticInfo_ViewModel.cs" />
+    <Compile Include="Views\Controls\Menu\CtrlBurgerMenu_View.xaml.cs">
+      <DependentUpon>CtrlBurgerMenu_View.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Pages\IndicatorsCompany_View.xaml.cs">
       <DependentUpon>IndicatorsCompany_View.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\StatisticInfo_View.xaml.cs">
+      <DependentUpon>StatisticInfo_View.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Windows\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -162,7 +187,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
-    <Folder Include="ViewModels\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MaterialDesignThemes.3.2.0\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.3.2.0\build\MaterialDesignThemes.targets')" />

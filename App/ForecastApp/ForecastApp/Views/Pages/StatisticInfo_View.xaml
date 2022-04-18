@@ -1,4 +1,4 @@
-﻿<Page x:Class="ForecastApp.Views.Pages.IndicatorsCompany_View"
+﻿<Page x:Class="ForecastApp.Views.Pages.StatisticInfo_View"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -10,12 +10,12 @@
       d:DesignWidth="1080">
 
     <Page.DataContext>
-        <vm:IndicatorsCompany_ViewModel/>
+        <vm:StatisticInfo_ViewModel/>
     </Page.DataContext>
     
     <Grid>
         <TextBlock
-            Text="indicatorsCompany"
+            Text="statisticInfo"
             Margin="200 0 0 0"/>
     </Grid>
 </Page>

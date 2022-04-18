@@ -3,6 +3,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:ctrlm="clr-namespace:ForecastApp.Views.Controls.Menu" 
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ForecastApp"
         mc:Ignorable="d"
@@ -21,6 +22,7 @@
         Height="800"
         Width="1080">
     <Grid>
+        
         <Grid.RowDefinitions>
             <RowDefinition Height="75"/>
             <RowDefinition Height="*"/>
@@ -32,14 +34,14 @@
             Orientation="Vertical">
             <materialDesign:ColorZone
                   Mode="PrimaryDark"
-                  Padding="16">
+                  Padding="15">
                 <StackPanel
-                    Orientation="Horizontal">
-                    <ToggleButton
-                      Style="{DynamicResource MaterialDesignHamburgerToggleButton}" />
+                    Orientation="Horizontal"
+                        HorizontalAlignment="Center">
                     <TextBlock
                       VerticalAlignment="Center"
-                      Margin="16 0 0 0"
+                      Margin="0 0 0 0"
+                        Style="{StaticResource MaterialDesignHeadline4TextBlock}"
                         Text="SPAR">
                     </TextBlock>
                 </StackPanel>
@@ -52,5 +54,12 @@
             Grid.Row="1"
             NavigationUIVisibility="Hidden">
         </Frame>
+
+        <!-- Бургер-меню -->
+        <ctrlm:CtrlBurgerMenu_View
+            Grid.Row="0"
+            Grid.RowSpan="2"
+            Grid.Column="0"
+            MyVisibility="Visible"/>
     </Grid>
 </Window>
