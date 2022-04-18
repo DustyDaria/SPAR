@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ForecastApp
+namespace ForecastApp.Views.Pages
 {
     /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
+    /// Логика взаимодействия для IndicatorsCompany_View.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class IndicatorsCompany_View : Page
     {
-        public MainWindow()
+        public IndicatorsCompany_View()
         {
             InitializeComponent();
         }
