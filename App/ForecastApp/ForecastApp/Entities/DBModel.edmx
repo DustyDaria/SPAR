@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище ForecastModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "Forecast.dbo.Forecast" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="Forecast">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="level0" Type="varchar" MaxLength="100" />
+          <Property Name="level1" Type="varchar" MaxLength="100" />
+          <Property Name="level2" Type="varchar" MaxLength="100" />
+          <Property Name="level3" Type="varchar" MaxLength="100" />
+          <Property Name="level4" Type="varchar" MaxLength="100" />
+          <Property Name="itemname" Type="varchar" MaxLength="100" />
+          <Property Name="itemid" Type="varchar" MaxLength="20" />
+          <Property Name="inventlocationid" Type="varchar" MaxLength="15" />
+          <Property Name="date" Type="datetime" />
+          <Property Name="qty20" Type="float" />
+          <Property Name="forecast20" Type="float" />
+          <Property Name="qty19" Type="float" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="Хранилище ForecastModelContainer">
+          <EntitySet Name="Forecast" EntityType="Self.Forecast" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Forecast].[level0] AS [level0], 
+    [Forecast].[level1] AS [level1], 
+    [Forecast].[level2] AS [level2], 
+    [Forecast].[level3] AS [level3], 
+    [Forecast].[level4] AS [level4], 
+    [Forecast].[itemname] AS [itemname], 
+    [Forecast].[itemid] AS [itemid], 
+    [Forecast].[inventlocationid] AS [inventlocationid], 
+    [Forecast].[date] AS [date], 
+    [Forecast].[qty20] AS [qty20], 
+    [Forecast].[forecast20] AS [forecast20], 
+    [Forecast].[qty19] AS [qty19], 
+    [Forecast].[id] AS [id]
+    FROM [dbo].[Forecast] AS [Forecast]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ForecastModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Forecast">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="level0" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="level1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="level2" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="level3" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="level4" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="itemname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="itemid" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="inventlocationid" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="date" Type="DateTime" Precision="3" />
+          <Property Name="qty20" Type="Double" />
+          <Property Name="forecast20" Type="Double" />
+          <Property Name="qty19" Type="Double" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityContainer Name="ForecastEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Forecast" EntityType="Self.Forecast" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище ForecastModelContainer" CdmEntityContainer="ForecastEntities">
+          <EntitySetMapping Name="Forecast">
+            <EntityTypeMapping TypeName="ForecastModel.Forecast">
+              <MappingFragment StoreEntitySet="Forecast">
+                <ScalarProperty Name="level0" ColumnName="level0" />
+                <ScalarProperty Name="level1" ColumnName="level1" />
+                <ScalarProperty Name="level2" ColumnName="level2" />
+                <ScalarProperty Name="level3" ColumnName="level3" />
+                <ScalarProperty Name="level4" ColumnName="level4" />
+                <ScalarProperty Name="itemname" ColumnName="itemname" />
+                <ScalarProperty Name="itemid" ColumnName="itemid" />
+                <ScalarProperty Name="inventlocationid" ColumnName="inventlocationid" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="qty20" ColumnName="qty20" />
+                <ScalarProperty Name="forecast20" ColumnName="forecast20" />
+                <ScalarProperty Name="qty19" ColumnName="qty19" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
