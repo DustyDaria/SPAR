@@ -37,8 +37,7 @@
                     TextBlock.Foreground="{DynamicResource MaterialDesignBody}"
                     Margin="24,8,24,16">
                         <DataGrid
-                        ItemsSource="{Binding Path=AllRequest}"
-                        x:Name="DataGrid_Request"
+                        ItemsSource="{Binding Path=ForecastData}"
                         AutoGenerateColumns="False"
                         Height="500"
                         HorizontalScrollBarVisibility="Auto"
@@ -48,7 +47,7 @@
                         SelectionMode="Extended" >
                             <DataGrid.Columns>
                                 <DataGridTextColumn
-                                Binding="{Binding Path}"
+                                Binding="{Binding Path=level0}"
                                 IsReadOnly="True"
                                 Header="0 уровень&#10;кл-ии товара">
                                     <DataGridTextColumn.ElementStyle>
@@ -60,7 +59,7 @@
                                     </DataGridTextColumn.ElementStyle>
                                 </DataGridTextColumn>
                                 <DataGridTextColumn
-                                Binding="{Binding Path}"
+                                Binding="{Binding Path=level1}"
                                 IsReadOnly="True"
                                 Header="1 уровень&#10;кл-ии товара">
                                     <DataGridTextColumn.ElementStyle>
@@ -72,7 +71,7 @@
                                     </DataGridTextColumn.ElementStyle>
                                 </DataGridTextColumn>
                                 <DataGridTextColumn
-                                Binding="{Binding Path}"
+                                Binding="{Binding Path=level2}"
                                 IsReadOnly="True"
                                 Header="2 уровень&#10;кл-ии товара">
                                     <DataGridTextColumn.ElementStyle>
@@ -84,7 +83,7 @@
                                     </DataGridTextColumn.ElementStyle>
                                 </DataGridTextColumn>
                                 <DataGridTextColumn
-                                Binding="{Binding Path}"
+                                Binding="{Binding Path=level3}"
                                 IsReadOnly="True"
                                 Header="3 уровень&#10;кл-ии товара">
                                     <DataGridTextColumn.ElementStyle>
@@ -96,7 +95,7 @@
                                     </DataGridTextColumn.ElementStyle>
                                 </DataGridTextColumn>
                                 <DataGridTextColumn
-                                Binding="{Binding Path}"
+                                Binding="{Binding Path=level4}"
                                 IsReadOnly="True"
                                 Header="4 уровень&#10;кл-ии товара">
                                     <DataGridTextColumn.ElementStyle>
@@ -108,27 +107,31 @@
                                     </DataGridTextColumn.ElementStyle>
                                 </DataGridTextColumn>
                                 <DataGridTextColumn
-                                Binding="{Binding Path}"
+                                Binding="{Binding Path=inventLocationId}"
                                 IsReadOnly="True"
                                 Header="Магазин&#10;(код)"/>
                                 <DataGridTextColumn
-                                Binding="{Binding Path}"
+                                Binding="{Binding Path=itemId}"
                                 IsReadOnly="True"
                                 Header="Артикул&#10;(код)"/>
                                 <DataGridTextColumn
-                                Binding="{Binding Path}"
+                                Binding="{Binding Path=itemName}"
+                                IsReadOnly="True"
+                                Header="Название&#10;артикула"/>
+                                <DataGridTextColumn
+                                Binding="{Binding Path=date}"
                                 IsReadOnly="True"
                                 Header="Дата"/>
                                 <DataGridTextColumn
-                                Binding="{Binding Path}"
+                                Binding="{Binding Path=qty20}"
                                 IsReadOnly="True"
                                 Header="Факт продаж&#10;текущего года"/>
                                 <DataGridTextColumn
-                                Binding="{Binding Path}"
+                                Binding="{Binding Path=qty19}"
                                 IsReadOnly="True"
                                 Header="Факт продаж&#10;предыдущего года"/>
                                 <DataGridTextColumn
-                                Binding="{Binding Path}"
+                                Binding="{Binding Path=forecast20}"
                                 IsReadOnly="True"
                                 Header="Прогноз&#10;текущего года"/>
                               
