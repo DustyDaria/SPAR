@@ -24,5 +24,10 @@ namespace ForecastApp.Views.Pages
         {
             InitializeComponent();
         }
+
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }
