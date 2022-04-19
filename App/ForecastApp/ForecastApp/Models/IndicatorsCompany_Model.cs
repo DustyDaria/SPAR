@@ -43,6 +43,20 @@ namespace ForecastApp.Models
         }
 
         /// <summary>
+        /// Получить список всех магазинов 
+        /// </summary>
+        /// <returns>список магазинов</returns>
+        public List<string> GetAllInventLocationId()
+        {
+            var list = context.Forecast
+                .Select(c => c.inventlocationid)
+                .ToList();
+            var output = list.Distinct().ToList();
+
+            return output;
+        }
+
+        /// <summary>
         /// Получить полное имя одного товара
         /// </summary>
         /// <param name="Id">id записи</param>
@@ -104,13 +118,15 @@ namespace ForecastApp.Models
         /// </summary>
         /// <param name="Id">id товара</param>
         /// <returns>список</returns>
-        public List<double> GetForecast20ForItem(string Id, DateTime DateStart, DateTime DateEnd)
+        public List<double> GetForecast20ForItem(string Id, 
+            DateTime DateStart, DateTime DateEnd, string InventLocationId)
         {
             var output = new List<double>();
             var list = context.Forecast
                 .Where(c => c.itemid == Id 
                 && c.date >= DateStart
-                && c.date <= DateEnd)
+                && c.date <= DateEnd
+                && c.inventlocationid == InventLocationId)
                 .Select(c => c.forecast20)
                 .ToList();
             foreach (var i in list)
@@ -124,13 +140,15 @@ namespace ForecastApp.Models
         /// </summary>
         /// <param name="Id">id товара</param>
         /// <returns>список</returns>
-        public List<double> GetQty20ForItem(string Id, DateTime DateStart, DateTime DateEnd)
+        public List<double> GetQty20ForItem(string Id, 
+            DateTime DateStart, DateTime DateEnd, string InventLocationId)
         {
             var output = new List<double>();
             var list = context.Forecast
                 .Where(c => c.itemid == Id
                 && c.date >= DateStart
-                && c.date <= DateEnd)
+                && c.date <= DateEnd
+                && c.inventlocationid == InventLocationId)
                 .Select(c => c.qty20)
                 .ToList();
             foreach (var i in list)
@@ -144,13 +162,15 @@ namespace ForecastApp.Models
         /// </summary>
         /// <param name="Id">id товара</param>
         /// <returns>список</returns>
-        public List<double> GetQty19ForItem(string Id, DateTime DateStart, DateTime DateEnd)
+        public List<double> GetQty19ForItem(string Id, 
+            DateTime DateStart, DateTime DateEnd, string InventLocationId)
         {
             var output = new List<double>();
             var list = context.Forecast
                 .Where(c => c.itemid == Id
                 && c.date >= DateStart
-                && c.date <= DateEnd)
+                && c.date <= DateEnd
+                && c.inventlocationid == InventLocationId)
                 .Select(c => c.qty19)
                 .ToList();
             foreach (var i in list)
@@ -159,12 +179,14 @@ namespace ForecastApp.Models
             return output;
         }
 
-        public string[] GetDateForItem(string Id, DateTime DateStart, DateTime DateEnd)
+        public string[] GetDateForItem(string Id, 
+            DateTime DateStart, DateTime DateEnd, string InventLocationId)
         {
             var query = context.Forecast
                 .Where(c => c.itemid == Id
                 && c.date >= DateStart
-                && c.date <= DateEnd)
+                && c.date <= DateEnd
+                && c.inventlocationid == InventLocationId)
                 .Select(c => c.date)
                 .ToList();
             var output = new List<string>();

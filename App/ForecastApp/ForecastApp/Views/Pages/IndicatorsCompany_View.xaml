@@ -161,17 +161,29 @@
                     Margin="24,8,24,16">
                             
                                     <materialDesign:Card
+                                        Height="auto"
                                     materialDesign:ShadowAssist.ShadowDepth="Depth1"
                                     Margin="0 0 0 20"
                                         Padding="20 0 0 20">
                                     <StackPanel
                             Orientation="Horizontal">
-                                        <ComboBox
+                                        <StackPanel
+                                            Orientation="Vertical"
+                                            Margin="20">
+                                            <ComboBox
                             materialDesign:HintAssist.Hint="Товар"
                             ItemsSource="{Binding Path=ItemDataList}"
                             SelectedValue="{Binding Path=ItemDataSelected}"
                             Margin="0 0 10 20">
-                                        </ComboBox>
+                                            </ComboBox>
+                                            <ComboBox
+                            materialDesign:HintAssist.Hint="Магазин"
+                            ItemsSource="{Binding Path=InventLocationList}"
+                            SelectedValue="{Binding Path=InventLocationIdSelected}"
+                            Margin="0 0 10 20">
+                                            </ComboBox>
+                                        </StackPanel>
+                                        
                                         <DatePicker
                             Grid.Column="1"
                             Grid.Row="3"
