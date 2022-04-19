@@ -50,6 +50,7 @@
 
         <!-- Фрейм для страниц -->
         <Frame 
+            Margin="85 10 10 10"
             Name="MainFrame"
             Grid.Row="1"
             NavigationUIVisibility="Hidden">
