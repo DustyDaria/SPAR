@@ -7,6 +7,7 @@
       xmlns:local="clr-namespace:ForecastApp.Views.Pages"
       xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
       xmlns:vm="clr-namespace:ForecastApp.ViewModels.Pages"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib" 
       mc:Ignorable="d" 
       d:DesignHeight="800" 
       d:DesignWidth="1080">
@@ -14,29 +15,36 @@
     <Page.DataContext>
         <vm:IndicatorsCompany_ViewModel/>
     </Page.DataContext>
-    
+
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="0.1*"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <TextBlock
+        <ScrollViewer
+                x:Name="scroll"
+                CanContentScroll="True"
+                VerticalScrollBarVisibility="Auto">
+            <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.1*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <TextBlock
             Style="{StaticResource MaterialDesignHeadline4TextBlock}"
             Text="Мониторинг показателей компании по дням"
-            Grid.Row="0">
-        </TextBlock>
-        <materialDesign:Card
+            Grid.Row="0"
+                Padding="0 0 0 20">
+            </TextBlock>
+            <materialDesign:Card
               Background="{DynamicResource MaterialDesignBackground}"
-            Grid.Row="1">
-            <StackPanel>
-                <Expander
+            Grid.Row="1"
+                Margin="0 0 20 0">
+                <StackPanel>
+                    <Expander
                   HorizontalAlignment="Stretch"
                   Header="Таблица">
-                    <StackPanel
+                        <StackPanel
                     Orientation="Vertical"
                     TextBlock.Foreground="{DynamicResource MaterialDesignBody}"
                     Margin="24,8,24,16">
-                        <DataGrid
+                            <DataGrid
                         ItemsSource="{Binding Path=ForecastData}"
                         AutoGenerateColumns="False"
                         Height="500"
@@ -45,134 +53,178 @@
                         CanUserAddRows="False"
                         SelectionUnit="Cell"
                         SelectionMode="Extended" >
-                            <DataGrid.Columns>
-                                <DataGridTextColumn
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn
                                 Binding="{Binding Path=level0}"
                                 IsReadOnly="True"
                                 Header="0 уровень&#10;кл-ии товара">
-                                    <DataGridTextColumn.ElementStyle>
-                                        <Style TargetType="TextBlock">
-                                            <Setter Property="TextWrapping" Value="Wrap"/>
-                                            <Setter Property="Width" Value="150"/>
-                                            <Setter Property="Height" Value="auto"/>
-                                        </Style>
-                                    </DataGridTextColumn.ElementStyle>
-                                </DataGridTextColumn>
-                                <DataGridTextColumn
+                                        <DataGridTextColumn.ElementStyle>
+                                            <Style TargetType="TextBlock">
+                                                <Setter Property="TextWrapping" Value="Wrap"/>
+                                                <Setter Property="Width" Value="150"/>
+                                                <Setter Property="Height" Value="auto"/>
+                                            </Style>
+                                        </DataGridTextColumn.ElementStyle>
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn
                                 Binding="{Binding Path=level1}"
                                 IsReadOnly="True"
                                 Header="1 уровень&#10;кл-ии товара">
-                                    <DataGridTextColumn.ElementStyle>
-                                        <Style TargetType="TextBlock">
-                                            <Setter Property="TextWrapping" Value="Wrap"/>
-                                            <Setter Property="Width" Value="150"/>
-                                            <Setter Property="Height" Value="auto"/>
-                                        </Style>
-                                    </DataGridTextColumn.ElementStyle>
-                                </DataGridTextColumn>
-                                <DataGridTextColumn
+                                        <DataGridTextColumn.ElementStyle>
+                                            <Style TargetType="TextBlock">
+                                                <Setter Property="TextWrapping" Value="Wrap"/>
+                                                <Setter Property="Width" Value="150"/>
+                                                <Setter Property="Height" Value="auto"/>
+                                            </Style>
+                                        </DataGridTextColumn.ElementStyle>
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn
                                 Binding="{Binding Path=level2}"
                                 IsReadOnly="True"
                                 Header="2 уровень&#10;кл-ии товара">
-                                    <DataGridTextColumn.ElementStyle>
-                                        <Style TargetType="TextBlock">
-                                            <Setter Property="TextWrapping" Value="Wrap"/>
-                                            <Setter Property="Width" Value="150"/>
-                                            <Setter Property="Height" Value="auto"/>
-                                        </Style>
-                                    </DataGridTextColumn.ElementStyle>
-                                </DataGridTextColumn>
-                                <DataGridTextColumn
+                                        <DataGridTextColumn.ElementStyle>
+                                            <Style TargetType="TextBlock">
+                                                <Setter Property="TextWrapping" Value="Wrap"/>
+                                                <Setter Property="Width" Value="150"/>
+                                                <Setter Property="Height" Value="auto"/>
+                                            </Style>
+                                        </DataGridTextColumn.ElementStyle>
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn
                                 Binding="{Binding Path=level3}"
                                 IsReadOnly="True"
                                 Header="3 уровень&#10;кл-ии товара">
-                                    <DataGridTextColumn.ElementStyle>
-                                        <Style TargetType="TextBlock">
-                                            <Setter Property="TextWrapping" Value="Wrap"/>
-                                            <Setter Property="Width" Value="150"/>
-                                            <Setter Property="Height" Value="auto"/>
-                                        </Style>
-                                    </DataGridTextColumn.ElementStyle>
-                                </DataGridTextColumn>
-                                <DataGridTextColumn
+                                        <DataGridTextColumn.ElementStyle>
+                                            <Style TargetType="TextBlock">
+                                                <Setter Property="TextWrapping" Value="Wrap"/>
+                                                <Setter Property="Width" Value="150"/>
+                                                <Setter Property="Height" Value="auto"/>
+                                            </Style>
+                                        </DataGridTextColumn.ElementStyle>
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn
                                 Binding="{Binding Path=level4}"
                                 IsReadOnly="True"
                                 Header="4 уровень&#10;кл-ии товара">
-                                    <DataGridTextColumn.ElementStyle>
-                                        <Style TargetType="TextBlock">
-                                            <Setter Property="TextWrapping" Value="Wrap"/>
-                                            <Setter Property="Width" Value="150"/>
-                                            <Setter Property="Height" Value="auto"/>
-                                        </Style>
-                                    </DataGridTextColumn.ElementStyle>
-                                </DataGridTextColumn>
-                                <DataGridTextColumn
+                                        <DataGridTextColumn.ElementStyle>
+                                            <Style TargetType="TextBlock">
+                                                <Setter Property="TextWrapping" Value="Wrap"/>
+                                                <Setter Property="Width" Value="150"/>
+                                                <Setter Property="Height" Value="auto"/>
+                                            </Style>
+                                        </DataGridTextColumn.ElementStyle>
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn
                                 Binding="{Binding Path=inventLocationId}"
                                 IsReadOnly="True"
                                 Header="Магазин&#10;(код)"/>
-                                <DataGridTextColumn
+                                    <DataGridTextColumn
                                 Binding="{Binding Path=itemId}"
                                 IsReadOnly="True"
                                 Header="Артикул&#10;(код)"/>
-                                <DataGridTextColumn
+                                    <DataGridTextColumn
                                 Binding="{Binding Path=itemName}"
                                 IsReadOnly="True"
                                 Header="Название&#10;артикула"/>
-                                <DataGridTextColumn
+                                    <DataGridTextColumn
                                 Binding="{Binding Path=date}"
                                 IsReadOnly="True"
                                 Header="Дата"/>
-                                <DataGridTextColumn
+                                    <DataGridTextColumn
                                 Binding="{Binding Path=qty20}"
                                 IsReadOnly="True"
                                 Header="Факт продаж&#10;текущего года"/>
-                                <DataGridTextColumn
+                                    <DataGridTextColumn
                                 Binding="{Binding Path=qty19}"
                                 IsReadOnly="True"
                                 Header="Факт продаж&#10;предыдущего года"/>
-                                <DataGridTextColumn
+                                    <DataGridTextColumn
                                 Binding="{Binding Path=forecast20}"
                                 IsReadOnly="True"
                                 Header="Прогноз&#10;текущего года"/>
-                              
-                            </DataGrid.Columns>
-                        </DataGrid>
-                    </StackPanel>
-                </Expander>
-                <Border
+
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </StackPanel>
+                    </Expander>
+                    <Border
                   Background="{DynamicResource MaterialDesignDivider}"
                   Height="1"
                   HorizontalAlignment="Stretch"
                   SnapsToDevicePixels="True" />
-                <Expander
+                    <Expander
                   HorizontalAlignment="Stretch"
                   Header="График">
-                    <StackPanel
+                        <StackPanel
                     Orientation="Vertical"
                     TextBlock.Foreground="{DynamicResource MaterialDesignBody}"
                     Margin="24,8,24,16">
-                        <lvc:CartesianChart 
+                            
+                                    <materialDesign:Card
+                                    materialDesign:ShadowAssist.ShadowDepth="Depth1"
+                                    Margin="0 0 0 20"
+                                        Padding="20 0 0 20">
+                                    <StackPanel
+                            Orientation="Horizontal">
+                                        <ComboBox
+                            materialDesign:HintAssist.Hint="Товар"
+                            ItemsSource="{Binding Path=ItemDataList}"
+                            SelectedValue="{Binding Path=ItemDataSelected}"
+                            Margin="0 0 10 20">
+                                        </ComboBox>
+                                        <DatePicker
+                            Grid.Column="1"
+                            Grid.Row="3"
+                            Margin="25 25 25 25"
+                            VerticalAlignment="Top"
+                            SelectedDate="{Binding Path=DateStart}"
+                          materialDesign:HintAssist.Hint="Дата начала периода"
+                          Style="{StaticResource MaterialDesignOutlinedDatePicker}"/>
+
+                                        <DatePicker
+                            Grid.Column="1"
+                            Grid.Row="4"
+                            Margin="25 25 25 25"
+                            VerticalAlignment="Top"
+                    SelectedDate="{Binding Path=DateEnd}"
+                          materialDesign:HintAssist.Hint="Дата окончания периода"
+                          Style="{StaticResource MaterialDesignOutlinedDatePicker}" />
+                                        <Button x:Name="btnUpdate"
+                                        Style="{StaticResource MaterialDesignFloatingActionDarkButton}"
+                                        ToolTip="MaterialDesignFloatingActionDarkButton" Click="btnUpdate_Click">
+                                            <materialDesign:PackIcon
+                                        Kind="Update"
+                                        
+                                        Height="24"
+                                        Width="24" />
+                                        </Button>
+                                    </StackPanel>
+                                </materialDesign:Card>
+                             
+                            <lvc:CartesianChart 
                             Series="{Binding SeriesCollection}" 
                             LegendLocation="Top"
-                            Height="auto">
-                            <lvc:CartesianChart.AxisX>
-                                <lvc:Axis Title="X" 
-                                          Labels="{Binding BarLabels}"/>
-                            </lvc:CartesianChart.AxisX>
-                            <lvc:CartesianChart.AxisY>
-                                <lvc:Axis Title="Y" 
-                                          LabelFormatter="{Binding Formatter}"/>
-                            </lvc:CartesianChart.AxisY>
-                        </lvc:CartesianChart>                        
-                    </StackPanel>
-                </Expander>
-                <Border
+                            Height="300">
+                                <lvc:CartesianChart.AxisX>
+                                    <lvc:Axis Title="Дата" 
+                                          Labels="{Binding LabelsDate}"/>
+                                </lvc:CartesianChart.AxisX>
+                                <lvc:CartesianChart.AxisY>
+                                    <lvc:Axis Title="Количество продаж" 
+                                          LabelFormatter="{Binding yFormatter}"/>
+                                </lvc:CartesianChart.AxisY>
+                            </lvc:CartesianChart>
+                        </StackPanel>
+                    </Expander>
+                    <Border
                   Background="{DynamicResource MaterialDesignDivider}"
                   Height="1"
                   HorizontalAlignment="Stretch"
                   SnapsToDevicePixels="True" />
-                
-            </StackPanel>
-        </materialDesign:Card>
+
+                </StackPanel>
+            </materialDesign:Card>
+            </Grid>
+        </ScrollViewer>
     </Grid>
 </Page>

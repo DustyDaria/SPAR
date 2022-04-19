@@ -27,6 +27,38 @@ namespace ForecastApp.Models
         }
 
         /// <summary>
+        /// Получить список всех полных наименований товара
+        /// </summary>
+        /// <param name="AllIdForecast">список всех id</param>
+        /// <returns>список товаров</returns>
+        public List<string> GetAllItem(List<int> AllIdForecast)
+        {
+            var list = new List<string>();
+
+            foreach (var i in AllIdForecast)
+                list.Add(GetOneItem(i));
+            var output = list.Distinct().ToList();
+
+            return output;
+        }
+
+        /// <summary>
+        /// Получить полное имя одного товара
+        /// </summary>
+        /// <param name="Id">id записи</param>
+        /// <returns>полное имя</returns>
+        private string GetOneItem(int Id)
+        {
+            var output = new Forecast_DataModel
+            {
+                itemId = RequestItemId(Id),
+                itemName = RequestItemName(Id)
+            };
+
+            return output.FullItemName;
+        }
+
+        /// <summary>
         /// Получить список всех записей
         /// </summary>
         /// <param name="AllIdForecast">Список со всеми id</param>
@@ -65,6 +97,87 @@ namespace ForecastApp.Models
             };
 
             return output;
+        }
+
+        /// <summary>
+        /// Список значений "прогноз на текущий год"
+        /// </summary>
+        /// <param name="Id">id товара</param>
+        /// <returns>список</returns>
+        public List<double> GetForecast20ForItem(string Id, DateTime DateStart, DateTime DateEnd)
+        {
+            var output = new List<double>();
+            var list = context.Forecast
+                .Where(c => c.itemid == Id 
+                && c.date >= DateStart
+                && c.date <= DateEnd)
+                .Select(c => c.forecast20)
+                .ToList();
+            foreach (var i in list)
+                output.Add((double)i);
+
+            return output;
+        }
+
+        /// <summary>
+        /// Список значений "факт продаж на прошлый год"
+        /// </summary>
+        /// <param name="Id">id товара</param>
+        /// <returns>список</returns>
+        public List<double> GetQty20ForItem(string Id, DateTime DateStart, DateTime DateEnd)
+        {
+            var output = new List<double>();
+            var list = context.Forecast
+                .Where(c => c.itemid == Id
+                && c.date >= DateStart
+                && c.date <= DateEnd)
+                .Select(c => c.qty20)
+                .ToList();
+            foreach (var i in list)
+                output.Add((double)i);
+
+            return output;
+        }
+
+        /// <summary>
+        /// Список значений "факт продаж на текущий год"
+        /// </summary>
+        /// <param name="Id">id товара</param>
+        /// <returns>список</returns>
+        public List<double> GetQty19ForItem(string Id, DateTime DateStart, DateTime DateEnd)
+        {
+            var output = new List<double>();
+            var list = context.Forecast
+                .Where(c => c.itemid == Id
+                && c.date >= DateStart
+                && c.date <= DateEnd)
+                .Select(c => c.qty19)
+                .ToList();
+            foreach (var i in list)
+                output.Add((double)i);
+
+            return output;
+        }
+
+        public string[] GetDateForItem(string Id, DateTime DateStart, DateTime DateEnd)
+        {
+            var query = context.Forecast
+                .Where(c => c.itemid == Id
+                && c.date >= DateStart
+                && c.date <= DateEnd)
+                .Select(c => c.date)
+                .ToList();
+            var output = new List<string>();
+            query.Sort();
+
+            foreach (var i in query)
+            {
+                string[] str = i.ToString().Split(new char[] { ' ' });
+
+                output.Add(str[0]);
+            }
+
+            return output.ToArray();
         }
 
         #region Получение значений для единичной записи
@@ -178,8 +291,8 @@ namespace ForecastApp.Models
         /// </summary>
         /// <param name="Id">id</param>
         /// <returns>значение из бд</returns>
-        private float RequestQty20(int Id)
-            => Convert.ToSingle(context.Forecast
+        private double RequestQty20(int Id)
+            => Convert.ToDouble(context.Forecast
                 .Where(c => c.id == Id)
                 .Select(c => c.qty20)
                 .FirstOrDefault());
@@ -189,8 +302,8 @@ namespace ForecastApp.Models
         /// </summary>
         /// <param name="Id">id</param>
         /// <returns>значение из бд</returns>
-        private float RequestQty19(int Id)
-            => Convert.ToSingle(context.Forecast
+        private double RequestQty19(int Id)
+            => Convert.ToDouble(context.Forecast
                 .Where(c => c.id == Id)
                 .Select(c => c.qty19)
                 .FirstOrDefault());
@@ -200,8 +313,8 @@ namespace ForecastApp.Models
         /// </summary>
         /// <param name="Id">id</param>
         /// <returns>значение из бд</returns>
-        private float RequestForecast20(int Id)
-            => Convert.ToSingle(context.Forecast
+        private double RequestForecast20(int Id)
+            => Convert.ToDouble(context.Forecast
                 .Where(c => c.id == Id)
                 .Select(c => c.forecast20)
                 .FirstOrDefault());

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace ForecastApp.Data
 {
@@ -18,9 +19,26 @@ namespace ForecastApp.Data
         public string itemId { get; set; }
         public string itemName { get; set; }
         public DateTime? date { get; set; }
-        public float? qty20 { get; set; }
-        public float? qty19 { get; set; }
-        public float? forecast20 { get; set; }
+        public double qty20 { get; set; }
+        public double qty19 { get; set; }
+        public double forecast20 { get; set; }
 
+        public string FullItemName
+        {
+            get => $"{ itemId }:{  itemName }";
+            set
+            {
+                try
+                {
+                    string[] fullName = value.Split(new char[] { ':' });
+                    itemId = fullName[0];
+                    itemName = fullName[1];
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Возникла непредвиденная ошибка: " + ex.ToString());
+                }
+            }
+        }
     }
 }
