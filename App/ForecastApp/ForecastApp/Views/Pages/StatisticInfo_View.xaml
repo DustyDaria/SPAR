@@ -59,22 +59,28 @@
                     materialDesign:HintAssist.HelperText="«Не спеши, выбирай с умом»"
                     MinWidth="128"
                     Height="50"
-                    ItemsSource="{Binding Path}"
-                    SelectedItem="{Binding Path}" SelectionChanged="ComboBox_SelectionChanged">
+                    ItemsSource="{Binding Path=ItemDataList}"
+                    SelectedItem="{Binding Path=ItemDataSelected}">
                         </ComboBox>
-                        
-                        <TextBox
+
+                        <ComboBox
+                    VerticalAlignment="Top"
                     Margin="25"
                     Grid.Column="1"
-                    MaxLength="35"
                     Grid.Row="0"
                             FontSize="14"
-                    Text="{Binding Path}"
-                    Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}"
-                    VerticalAlignment="Top"
+                    Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+                    materialDesign:TextFieldAssist.HasClearButton="True"
                     materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource PrimaryHueMidBrush}"
+                    materialDesign:ColorZoneAssist.Mode="Accent"
+                    materialDesign:HintAssist.Hint="Магазин"
                     materialDesign:HintAssist.Foreground="{DynamicResource PrimaryHueMidBrush}"
-                    materialDesign:HintAssist.Hint="Магазин"/>
+                    materialDesign:HintAssist.HelperText="«Не спеши, выбирай с умом»"
+                    MinWidth="128"
+                    Height="50"
+                    ItemsSource="{Binding Path}"
+                    SelectedItem="{Binding Path}">
+                        </ComboBox>
                         <GroupBox
                             Grid.Row="1"
                             Grid.Column="1"

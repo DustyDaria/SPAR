@@ -133,6 +133,7 @@
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\IndicatorsCompany_Model.cs" />
+    <Compile Include="Models\StatisticInfo_Model.cs" />
     <Compile Include="Services\Commands\Base\Command.cs" />
     <Compile Include="Services\Commands\MenuClick\MyCommand.cs" />
     <Compile Include="Services\Commands\MenuClick\OpenIndicatorsCompanyViewCommand.cs" />
