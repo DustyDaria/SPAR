@@ -27,6 +27,11 @@ namespace ForecastApp.ViewModels.Pages
                 .GetAllItem(_model.GetAllId()));
             if (ItemDataList.Count > 0)
                 ItemDataSelected = ItemDataList.First();
+
+            InventLocationList = new List<string>(_model
+                .GetAllInventLocationId());
+            if (InventLocationList.Count > 0)
+                InventLocationIdSelected = InventLocationList.First();
             this.Cartesian();
             #endregion
         }
@@ -39,6 +44,16 @@ namespace ForecastApp.ViewModels.Pages
         {
             get => _forecastData;
             set => Set(ref _forecastData, value);
+        }
+
+        private static List<string> _inventLocationList;
+        /// <summary>
+        /// Список id магазинов
+        /// </summary>
+        public List<string> InventLocationList
+        {
+            get => _inventLocationList;
+            set => Set(ref _inventLocationList, value);
         }
 
         private static List<string> _itemDataList;
@@ -59,6 +74,14 @@ namespace ForecastApp.ViewModels.Pages
         {
             get => _itemDataSelected;
             set => Set(ref _itemDataSelected, value);
+        }
+
+        private static string _inventLocationIdSelected;
+
+        public string InventLocationIdSelected
+        {
+            get => _inventLocationIdSelected;
+            set => Set(ref _inventLocationIdSelected, value);
         }
 
         //Для проверки:
@@ -98,7 +121,8 @@ namespace ForecastApp.ViewModels.Pages
                 {
                     Title="Факт продаж на текущий год",
                     Values = new ChartValues<double>(_model
-                    .GetQty20ForItem(dataModel.itemId, _dateStart, _dateEnd)),
+                    .GetQty20ForItem(dataModel.itemId, _dateStart, 
+                        _dateEnd, _inventLocationIdSelected)),
                     PointGeometry = DefaultGeometries.Circle,
                     PointGeometrySize=10
                 },
@@ -106,7 +130,8 @@ namespace ForecastApp.ViewModels.Pages
                 {
                     Title="Факт продаж на прошлый год",
                     Values=new ChartValues<double>(_model
-                    .GetQty19ForItem(dataModel.itemId, _dateStart, _dateEnd)),
+                    .GetQty19ForItem(dataModel.itemId, _dateStart, 
+                        _dateEnd, _inventLocationIdSelected)),
                     PointGeometry=DefaultGeometries.Triangle,
                     PointGeometrySize=10
                 },
@@ -114,12 +139,14 @@ namespace ForecastApp.ViewModels.Pages
                 {
                     Title="Прогноз на текущий год",
                     Values=new ChartValues<double>(_model
-                    .GetForecast20ForItem(dataModel.itemId, _dateStart, _dateEnd)),
+                    .GetForecast20ForItem(dataModel.itemId, _dateStart, 
+                        _dateEnd, _inventLocationIdSelected)),
                     PointGeometry = DefaultGeometries.Square,
                     PointGeometrySize=10
                 }
             };
-            LabelsDate = _model.GetDateForItem(dataModel.itemId, _dateStart, _dateEnd);
+            LabelsDate = _model.GetDateForItem(dataModel.itemId, _dateStart, 
+                _dateEnd, _inventLocationIdSelected);
         }
 
         #region Свойства для графика
