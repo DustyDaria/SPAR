@@ -1,4 +1,9 @@
-﻿using System;
+﻿using ForecastApp.Data;
+using ForecastApp.Models;
+using ForecastApp.ViewModels.Pages;
+using LiveCharts;
+using LiveCharts.Wpf;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +28,11 @@ namespace ForecastApp.Views.Pages
         public IndicatorsCompany_View()
         {
             InitializeComponent();
+        }
+
+        private void btnUpdate_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("К сожалению на данный момент этот функционал недоступен.");
         }
     }
 }
