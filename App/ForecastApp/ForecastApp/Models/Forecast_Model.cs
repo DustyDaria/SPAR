@@ -141,15 +141,21 @@ namespace ForecastApp.Models
             DateTime DateStart, DateTime DateEnd, string InventLocationId)
         {
             var output = new List<double>();
-            var list = context.Forecast
+            var listData = context.Forecast
                 .Where(c => c.itemid == Id 
                 && c.date >= DateStart
                 && c.date <= DateEnd
                 && c.inventlocationid == InventLocationId)
-                .Select(c => c.forecast20)
+                .Select(c => c)
                 .ToList();
-            foreach (var i in list)
-                output.Add((double)i);
+            foreach (var i in listData)
+            {
+                if (i.coefficient == null || i.coefficient == 0)
+                    output.Add((double)i.forecast20);
+                else
+                    output.Add((double)(i.forecast20 * i.coefficient));
+            }
+                
 
             return output;
         }
