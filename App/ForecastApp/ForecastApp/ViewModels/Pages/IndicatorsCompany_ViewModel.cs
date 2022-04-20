@@ -113,6 +113,16 @@ namespace ForecastApp.ViewModels.Pages
             set => Set(ref _dateEnd, value);
         }
 
+        private static string _coefficient;
+        /// <summary>
+        /// Коэффициент повышения/снижения прогноза
+        /// </summary>
+        public string Сoefficient
+        {
+            get => _coefficient;
+            set => Set(ref _coefficient, value);
+        }
+
         private void Cartesian()
         {
             var dataModel = new Forecast_DataModel();

@@ -22,6 +22,7 @@ namespace ForecastApp.Data
         public double qty20 { get; set; }
         public double qty19 { get; set; }
         public double forecast20 { get; set; }
+        public double coefficient { get; set; }
 
         public string FullItemName
         {

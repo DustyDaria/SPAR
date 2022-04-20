@@ -65,8 +65,8 @@ namespace ForecastApp.Models
         {
             var output = new Forecast_DataModel
             {
-                itemId = RequestItemId(Id),
-                itemName = RequestItemName(Id)
+                itemId = QueryItemId(Id),
+                itemName = QueryItemName(Id)
             };
 
             return output.FullItemName;
@@ -96,18 +96,19 @@ namespace ForecastApp.Models
             var output = new Forecast_DataModel
             {
                 id = Id,
-                level0 = RequestLevel0(Id),
-                level1 = RequestLevel1(Id),
-                level2 = RequestLevel2(Id),
-                level3 = RequestLevel3(Id),
-                level4 = RequestLevel4(Id),
-                inventLocationId = RequestInventLocationId(Id),
-                itemId = RequestItemId(Id),
-                itemName = RequestItemName(Id),
-                date = RequestDate(Id),
-                qty20 = RequestQty20(Id),
-                qty19 = RequestQty19(Id),
-                forecast20 = RequestForecast20(Id)
+                level0 = QueryLevel0(Id),
+                level1 = QueryLevel1(Id),
+                level2 = QueryLevel2(Id),
+                level3 = QueryLevel3(Id),
+                level4 = QueryLevel4(Id),
+                inventLocationId = QueryInventLocationId(Id),
+                itemId = QueryItemId(Id),
+                itemName = QueryItemName(Id),
+                date = QueryDate(Id),
+                qty20 = QueryQty20(Id),
+                qty19 = QueryQty19(Id),
+                forecast20 = QueryForecast20(Id),
+                coefficient = QueryCoefficient(Id)
             };
 
             return output;
@@ -209,7 +210,7 @@ namespace ForecastApp.Models
         /// </summary>
         /// <param name="Id">id</param>
         /// <returns>значение из бд</returns>
-        private string RequestLevel0 (int Id)
+        private string QueryLevel0 (int Id)
             => context.Forecast
             .Where(c => c.id == Id)
             .Select(c => c.level0)
@@ -221,7 +222,7 @@ namespace ForecastApp.Models
         /// </summary>
         /// <param name="Id">id</param>
         /// <returns>значение из бд</returns>
-        private string RequestLevel1(int Id)
+        private string QueryLevel1(int Id)
             => context.Forecast
             .Where(c => c.id == Id)
             .Select(c => c.level1)
@@ -232,7 +233,7 @@ namespace ForecastApp.Models
         /// </summary>
         /// <param name="Id">id</param>
         /// <returns>значение из бд</returns>
-        private string RequestLevel2(int Id)
+        private string QueryLevel2(int Id)
             => context.Forecast
             .Where(c => c.id == Id)
             .Select(c => c.level2)
@@ -243,7 +244,7 @@ namespace ForecastApp.Models
         /// </summary>
         /// <param name="Id">id</param>
         /// <returns>значение из бд</returns>
-        private string RequestLevel3(int Id)
+        private string QueryLevel3(int Id)
             => context.Forecast
             .Where(c => c.id == Id)
             .Select(c => c.level3)
@@ -254,7 +255,7 @@ namespace ForecastApp.Models
         /// </summary>
         /// <param name="Id">id</param>
         /// <returns>значение из бд</returns>
-        private string RequestLevel4(int Id)
+        private string QueryLevel4(int Id)
             => context.Forecast
             .Where(c => c.id == Id)
             .Select(c => c.level4)
@@ -265,7 +266,7 @@ namespace ForecastApp.Models
         /// </summary>
         /// <param name="Id">id</param>
         /// <returns>значение из бд</returns>
-        private string RequestInventLocationId(int Id)
+        private string QueryInventLocationId(int Id)
             => context.Forecast
             .Where(c => c.id == Id)
             .Select(c => c.inventlocationid)
@@ -276,7 +277,7 @@ namespace ForecastApp.Models
         /// </summary>
         /// <param name="Id">id</param>
         /// <returns>значение из бд</returns>
-        private string RequestItemId(int Id)
+        private string QueryItemId(int Id)
             => context.Forecast
             .Where(c => c.id == Id)
             .Select(c => c.itemid)
@@ -287,7 +288,7 @@ namespace ForecastApp.Models
         /// </summary>
         /// <param name="Id">id</param>
         /// <returns>значение из бд</returns>
-        private string RequestItemName(int Id)
+        private string QueryItemName(int Id)
             => context.Forecast
             .Where(c => c.id == Id)
             .Select(c => c.itemname)
@@ -298,7 +299,7 @@ namespace ForecastApp.Models
         /// </summary>
         /// <param name="Id">id</param>
         /// <returns>значение из бд</returns>
-        private DateTime RequestDate(int Id)
+        private DateTime QueryDate(int Id)
         {
             DateTime output = (DateTime)context.Forecast
                               .Where(c => c.id == Id)
@@ -313,7 +314,7 @@ namespace ForecastApp.Models
         /// </summary>
         /// <param name="Id">id</param>
         /// <returns>значение из бд</returns>
-        private double RequestQty20(int Id)
+        private double QueryQty20(int Id)
             => Convert.ToDouble(context.Forecast
                 .Where(c => c.id == Id)
                 .Select(c => c.qty20)
@@ -324,7 +325,7 @@ namespace ForecastApp.Models
         /// </summary>
         /// <param name="Id">id</param>
         /// <returns>значение из бд</returns>
-        private double RequestQty19(int Id)
+        private double QueryQty19(int Id)
             => Convert.ToDouble(context.Forecast
                 .Where(c => c.id == Id)
                 .Select(c => c.qty19)
@@ -335,12 +336,23 @@ namespace ForecastApp.Models
         /// </summary>
         /// <param name="Id">id</param>
         /// <returns>значение из бд</returns>
-        private double RequestForecast20(int Id)
+        private double QueryForecast20(int Id)
             => Convert.ToDouble(context.Forecast
                 .Where(c => c.id == Id)
                 .Select(c => c.forecast20)
                 .FirstOrDefault());
 
         #endregion
+
+        /// <summary>
+        /// Получить коэффициент повышения/снижения прогноза
+        /// </summary>
+        /// <param name="Id">id записи</param>
+        /// <returns>коэффициент</returns>
+        private double QueryCoefficient(int Id)
+            => Convert.ToDouble(context.Forecast
+                .Where(c => c.id == Id)
+                .Select(c => c.coefficient)
+                .FirstOrDefault());
     }
 }

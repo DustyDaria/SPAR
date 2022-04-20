@@ -143,7 +143,12 @@
                                 IsReadOnly="True"
                                 Header="Прогноз&#10;текущего года"/>
 
-                                </DataGrid.Columns>
+                                        <DataGridTextColumn
+                                Binding="{Binding Path=coefficient}"
+                                IsReadOnly="True"
+                                Header="Коэффициент&#10;повышения\снижения"/>
+
+                                    </DataGrid.Columns>
                             </DataGrid>
                         </StackPanel>
                     </Expander>
