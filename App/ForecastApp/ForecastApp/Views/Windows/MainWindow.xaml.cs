@@ -9,6 +9,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
+using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -27,6 +28,26 @@ namespace ForecastApp.Views.Windows
             InitializeComponent();
             MainFrame.Navigate(new IndicatorsCompany_View());
             PageManager.MainFrame = MainFrame;
+        }
+
+        private void BtnWindowMinus_Click(object sender, RoutedEventArgs e)
+        {
+            this.WindowState = WindowState.Minimized;
+        }
+
+        private void BtnWindowMaximize_Click(object sender, RoutedEventArgs e)
+        {
+            this.WindowState = WindowState.Maximized;
+        }
+
+        private void BtnWindowClose_Click(object sender, RoutedEventArgs e)
+        {
+            System.Windows.Application.Current.Shutdown();
+        }
+
+        private void BtnWindowNormal_Click(object sender, RoutedEventArgs e)
+        {
+            this.WindowState = WindowState.Normal;
         }
     }
 }
