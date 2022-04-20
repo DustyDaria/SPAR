@@ -14,7 +14,7 @@ namespace ForecastApp.ViewModels.Pages
 {
     public class IndicatorsCompany_ViewModel : ViewModel
     {
-        private IndicatorsCompany_Model _model = new IndicatorsCompany_Model();
+        private Forecast_Model _model = new Forecast_Model();
         private static DateTime _now = DateTime.Now;
 
         public IndicatorsCompany_ViewModel()

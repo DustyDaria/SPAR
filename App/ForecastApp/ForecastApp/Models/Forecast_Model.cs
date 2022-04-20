@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace ForecastApp.Models
 {
-    public class IndicatorsCompany_Model
+    public class Forecast_Model
     {
         Entities.ForecastEntities context = new Entities.ForecastEntities();
 
@@ -25,6 +25,24 @@ namespace ForecastApp.Models
 
             return output;
         }
+
+        /// <summary>
+        /// Получить id записей (для добавления коэффициента)
+        /// </summary>
+        /// <param name="IdItem">id-товара</param>
+        /// <param name="InventLocationId">id-магазина</param>
+        /// <param name="DateStart">дата начала</param>
+        /// <param name="DateEnd">дата окончания</param>
+        /// <returns></returns>
+        public List<int> GetAllIdForAddCoefficient(string IdItem, 
+            string InventLocationId, DateTime DateStart, DateTime DateEnd)
+            => context.Forecast
+                .Where(c => c.itemid == IdItem
+                && c.inventlocationid == InventLocationId
+                && c.date >= DateStart
+                && c.date <= DateEnd)
+                .Select(c => c.id)
+                .ToList();
 
         /// <summary>
         /// Получить список всех полных наименований товара
@@ -91,7 +109,7 @@ namespace ForecastApp.Models
         /// </summary>
         /// <param name="Id">id</param>
         /// <returns>объект класса</returns>
-        private Forecast_DataModel GetOneForecast(int Id)
+        public Forecast_DataModel GetOneForecast(int Id)
         {
             var output = new Forecast_DataModel
             {

@@ -5,8 +5,6 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="Хранилище ForecastModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <!--Ошибки, обнаруженные при создании:
-предупреждение 6002: В таблице или представлении "Forecast.dbo.Forecast" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
         <EntityType Name="Forecast">
           <Key>
             <PropertyRef Name="id" />
@@ -27,24 +25,7 @@
           <Property Name="coefficient" Type="float" />
         </EntityType>
         <EntityContainer Name="Хранилище ForecastModelContainer">
-          <EntitySet Name="Forecast" EntityType="Self.Forecast" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [Forecast].[id] AS [id], 
-    [Forecast].[level0] AS [level0], 
-    [Forecast].[level1] AS [level1], 
-    [Forecast].[level2] AS [level2], 
-    [Forecast].[level3] AS [level3], 
-    [Forecast].[level4] AS [level4], 
-    [Forecast].[inventlocationid] AS [inventlocationid], 
-    [Forecast].[itemid] AS [itemid], 
-    [Forecast].[itemname] AS [itemname], 
-    [Forecast].[date] AS [date], 
-    [Forecast].[qty20] AS [qty20], 
-    [Forecast].[qty19] AS [qty19], 
-    [Forecast].[forecast20] AS [forecast20], 
-    [Forecast].[coefficient] AS [coefficient]
-    FROM [dbo].[Forecast] AS [Forecast]</DefiningQuery>
-          </EntitySet>
+          <EntitySet Name="Forecast" EntityType="Self.Forecast" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
