@@ -19,7 +19,7 @@
         <ScrollViewer
                 x:Name="scroll"
                 CanContentScroll="True"
-                VerticalScrollBarVisibility="Auto">
+                VerticalScrollBarVisibility="Auto" Margin="0,20,0,-20">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="0.1*"/>
@@ -43,6 +43,7 @@
                             <RowDefinition/>
                             <RowDefinition/>
                             <RowDefinition/>
+                            <RowDefinition/>
                         </Grid.RowDefinitions>
                         <ComboBox
                     VerticalAlignment="Top"
@@ -53,7 +54,7 @@
                     Style="{StaticResource MaterialDesignFloatingHintComboBox}"
                     materialDesign:TextFieldAssist.HasClearButton="True"
                     materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource PrimaryHueMidBrush}"
-                    materialDesign:ColorZoneAssist.Mode="Accent"
+                    materialDesign:ColorZoneAssist.Mode="PrimaryLight"
                     materialDesign:HintAssist.Hint="Товар"
                     materialDesign:HintAssist.Foreground="{DynamicResource PrimaryHueMidBrush}"
                     materialDesign:HintAssist.HelperText="«Не спеши, выбирай с умом»"
@@ -72,20 +73,21 @@
                     Style="{StaticResource MaterialDesignFloatingHintComboBox}"
                     materialDesign:TextFieldAssist.HasClearButton="True"
                     materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource PrimaryHueMidBrush}"
-                    materialDesign:ColorZoneAssist.Mode="Accent"
+                    materialDesign:ColorZoneAssist.Mode="PrimaryLight"
                     materialDesign:HintAssist.Hint="Магазин"
                     materialDesign:HintAssist.Foreground="{DynamicResource PrimaryHueMidBrush}"
                     materialDesign:HintAssist.HelperText="«Не спеши, выбирай с умом»"
                     MinWidth="128"
                     Height="50"
-                    ItemsSource="{Binding Path}"
-                    SelectedItem="{Binding Path}">
+                    ItemsSource="{Binding Path=InventLocationList}"
+                    SelectedItem="{Binding Path=InventLocationIdSelected}">
                         </ComboBox>
                         <GroupBox
                             Grid.Row="1"
+                            Grid.RowSpan="2"
                             Grid.Column="1"
                             Height="200"
-                            Header="Средние продажи"
+                            Header="Среднее арифметическое продаж"
                                 Margin="20"
                             FontSize="20">
                             <StackPanel
@@ -98,7 +100,7 @@
                                     IsEnabled="False"
                                 Grid.Row="0"
                                         FontSize="16"
-                                Text="{Binding Path}"
+                                Text="{Binding Path=Avg20}"
                                 Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}"
                                 VerticalAlignment="Top"
                                 materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource PrimaryHueMidBrush}"
@@ -111,7 +113,7 @@
                                 Grid.Row="0"
                                     IsEnabled="False"
                                         FontSize="16"
-                                Text="{Binding Path}"
+                                Text="{Binding Path=Avg19}"
                                 Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}"
                                 VerticalAlignment="Bottom"
                                 materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource PrimaryHueMidBrush}"
@@ -124,7 +126,7 @@
                           Header="Ошибки прогноза"
                           Style="{DynamicResource MaterialDesignGroupBox}"
                           Margin="20"
-                            Grid.Row="2"
+                            Grid.Row="3"
                             Grid.Column="1"
                             Height="150"
                             FontSize="20"
@@ -136,7 +138,7 @@
                                 Grid.Row="0"
                                 IsEnabled="False"
                                         FontSize="16"
-                                Text="{Binding Path}"
+                                Text="{Binding Path=ErrorForecast}"
                                 Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}"
                                 VerticalAlignment="Top"
                                 materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource PrimaryHueMidBrush}"
@@ -144,8 +146,24 @@
                                 materialDesign:HintAssist.Hint="Текущий год"/>
                         </GroupBox>
                         <StackPanel
-                            Margin="20" 
                             Grid.Row="1"
+                            Orientation="Horizontal"
+                            HorizontalAlignment="Center">
+                            <DatePicker
+                                            Margin="25 25 25 25"
+                                            SelectedDate="{Binding Path=DateStart}"
+                                          materialDesign:HintAssist.Hint="Дата начала периода"
+                                          Style="{StaticResource MaterialDesignOutlinedDatePicker}"/>
+
+                            <DatePicker
+                                            Margin="25 25 25 25"
+                                            SelectedDate="{Binding Path=DateEnd}"
+                                          materialDesign:HintAssist.Hint="Дата окончания периода"
+                                          Style="{StaticResource MaterialDesignOutlinedDatePicker}" />
+                        </StackPanel>
+                        <StackPanel
+                            Margin="20" 
+                            Grid.Row="2"
                             Grid.Column="0"
                             Orientation="Horizontal">
                             <Grid>
@@ -176,24 +194,20 @@
                                 <Button
                             Grid.Column="1"
                                     Margin="10 0 10 0"
-                                    VerticalAlignment="Center"
-                                        Style="{StaticResource MaterialDesignFloatingActionDarkButton}"
-                                        ToolTip="MaterialDesignFloatingActionDarkButton" >
+                                    Style="{StaticResource MaterialDesignFloatingActionDarkButton}"
+                                    ToolTip="MaterialDesignFloatingActionDarkButton"> 
                                     <materialDesign:PackIcon
                                         Kind="Edit"
-                                        
                                         Height="24"
                                         Width="24" />
                                 </Button>
                                 <Button 
                             Grid.Column="2"
                                     Margin="10 0 10 0"
-                                    VerticalAlignment="Center"
-                                        Style="{StaticResource MaterialDesignFloatingActionDarkButton}"
-                                        ToolTip="MaterialDesignFloatingActionDarkButton">
+                                    Style="{StaticResource MaterialDesignFloatingActionDarkButton}"
+                                    ToolTip="MaterialDesignFloatingActionDarkButton">
                                     <materialDesign:PackIcon
                                         Kind="Update"
-                                        
                                         Height="24"
                                         Width="24" />
                                 </Button>

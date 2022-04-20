@@ -171,36 +171,54 @@
                                             Orientation="Vertical"
                                             Margin="20">
                                             <ComboBox
-                            materialDesign:HintAssist.Hint="Товар"
-                            ItemsSource="{Binding Path=ItemDataList}"
-                            SelectedValue="{Binding Path=ItemDataSelected}"
-                            Margin="0 0 10 20">
+                                            VerticalAlignment="Top"
+                                            Margin="25"
+                                                    FontSize="14"
+                                            Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+                                            materialDesign:TextFieldAssist.HasClearButton="True"
+                                            materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource PrimaryHueMidBrush}"
+                                            materialDesign:ColorZoneAssist.Mode="PrimaryLight"
+                                            materialDesign:HintAssist.Hint="Товар"
+                                            materialDesign:HintAssist.Foreground="{DynamicResource PrimaryHueMidBrush}"
+                                            materialDesign:HintAssist.HelperText="«Не спеши, выбирай с умом»"
+                                            MinWidth="128"
+                                            Height="50"
+                                            ItemsSource="{Binding Path=ItemDataList}"
+                                            SelectedItem="{Binding Path=ItemDataSelected}">
                                             </ComboBox>
                                             <ComboBox
-                            materialDesign:HintAssist.Hint="Магазин"
-                            ItemsSource="{Binding Path=InventLocationList}"
-                            SelectedValue="{Binding Path=InventLocationIdSelected}"
-                            Margin="0 0 10 20">
+                                            VerticalAlignment="Top"
+                                            Margin="25"
+                                                    FontSize="14"
+                                            Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+                                            materialDesign:TextFieldAssist.HasClearButton="True"
+                                            materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource PrimaryHueMidBrush}"
+                                            materialDesign:ColorZoneAssist.Mode="PrimaryLight"
+                                            materialDesign:HintAssist.Hint="Магазин"
+                                            materialDesign:HintAssist.Foreground="{DynamicResource PrimaryHueMidBrush}"
+                                            materialDesign:HintAssist.HelperText="«Не спеши, выбирай с умом»"
+                                            MinWidth="128"
+                                            Height="50"
+                                            ItemsSource="{Binding Path=InventLocationList}"
+                                            SelectedItem="{Binding Path=InventLocationIdSelected}">
                                             </ComboBox>
                                         </StackPanel>
-                                        
-                                        <DatePicker
-                            Grid.Column="1"
-                            Grid.Row="3"
-                            Margin="25 25 25 25"
-                            VerticalAlignment="Top"
-                            SelectedDate="{Binding Path=DateStart}"
-                          materialDesign:HintAssist.Hint="Дата начала периода"
-                          Style="{StaticResource MaterialDesignOutlinedDatePicker}"/>
+                                        <StackPanel
+                                            Orientation="Vertical"
+                                            Margin="20">
+                                            <DatePicker
+                                            Margin="25 25 25 25"
+                                            SelectedDate="{Binding Path=DateStart}"
+                                          materialDesign:HintAssist.Hint="Дата начала периода"
+                                          Style="{StaticResource MaterialDesignOutlinedDatePicker}"/>
 
-                                        <DatePicker
-                            Grid.Column="1"
-                            Grid.Row="4"
-                            Margin="25 25 25 25"
-                            VerticalAlignment="Top"
-                    SelectedDate="{Binding Path=DateEnd}"
-                          materialDesign:HintAssist.Hint="Дата окончания периода"
-                          Style="{StaticResource MaterialDesignOutlinedDatePicker}" />
+                                            <DatePicker
+                                            Margin="25 25 25 25"
+                                            SelectedDate="{Binding Path=DateEnd}"
+                                          materialDesign:HintAssist.Hint="Дата окончания периода"
+                                          Style="{StaticResource MaterialDesignOutlinedDatePicker}" />
+                                        </StackPanel>
+                                        
                                         <Button x:Name="btnUpdate"
                                         Style="{StaticResource MaterialDesignFloatingActionDarkButton}"
                                         ToolTip="MaterialDesignFloatingActionDarkButton" Click="btnUpdate_Click">
@@ -216,7 +234,7 @@
                             <lvc:CartesianChart 
                             Series="{Binding SeriesCollection}" 
                             LegendLocation="Top"
-                            Height="300">
+                            Height="400">
                                 <lvc:CartesianChart.AxisX>
                                     <lvc:Axis Title="Дата" 
                                           Labels="{Binding LabelsDate}"/>

@@ -32,6 +32,7 @@ namespace ForecastApp.ViewModels.Pages
                 .GetAllInventLocationId());
             if (InventLocationList.Count > 0)
                 InventLocationIdSelected = InventLocationList.First();
+
             this.Cartesian();
             #endregion
         }
@@ -68,7 +69,7 @@ namespace ForecastApp.ViewModels.Pages
 
         private static string _itemDataSelected;
         /// <summary>
-        /// Выбранный элемент из списка
+        /// Выбранный элемент из списка товаров
         /// </summary>
         public string ItemDataSelected
         {
@@ -77,7 +78,9 @@ namespace ForecastApp.ViewModels.Pages
         }
 
         private static string _inventLocationIdSelected;
-
+        /// <summary>
+        /// Выбранный элемент из списка магазинов
+        /// </summary>
         public string InventLocationIdSelected
         {
             get => _inventLocationIdSelected;
@@ -147,10 +150,11 @@ namespace ForecastApp.ViewModels.Pages
             };
             LabelsDate = _model.GetDateForItem(dataModel.itemId, _dateStart, 
                 _dateEnd, _inventLocationIdSelected);
+            yFormatter = value => value.ToString("");
         }
 
         #region Свойства для графика
-        public Func<double> yFormatter { get; set; }
+        public Func<double, string> yFormatter { get; set; }
         public string[] LabelsDate { get; set; }
         public SeriesCollection SeriesCollection { get; set; }
         #endregion
