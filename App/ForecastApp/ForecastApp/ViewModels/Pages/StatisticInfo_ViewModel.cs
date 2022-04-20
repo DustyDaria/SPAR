@@ -1,37 +1,22 @@
 ﻿using ForecastApp.Data;
 using ForecastApp.Models;
-using ForecastApp.Services.Commands;
-using ForecastApp.Services.Commands.StatisticInfo;
 using ForecastApp.ViewModels.Base;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Input;
 
 namespace ForecastApp.ViewModels.Pages
 {
     public class StatisticInfo_ViewModel : ViewModel
     {
-        private Forecast_Model _indicatorsModel = new Forecast_Model();
+        private IndicatorsCompany_Model _indicatorsModel = new IndicatorsCompany_Model();
+        private StatisticInfo_Model _statisticModel = new StatisticInfo_Model();
         private Forecast_DataModel _dataModel = new Forecast_DataModel();
         public StatisticInfo_ViewModel()
         {
-            this.LoadData();
-            this.CalculateFunc();
-        }
-
-        /// <summary>
-        /// Загрузка данных
-        /// </summary>
-        public void LoadData()
-        {
-            if(ItemDataList != null)
-                ItemDataList.Clear();
-            if (InventLocationList != null)
-                InventLocationList.Clear();
-
+            #region Загрузка данных
             ItemDataList = new List<string>(_indicatorsModel
                 .GetAllItem(_indicatorsModel
                 .GetAllId()));
@@ -43,12 +28,11 @@ namespace ForecastApp.ViewModels.Pages
             if (InventLocationList.Count > 0)
                 InventLocationIdSelected = InventLocationList.First();
 
+            this.CalculateFunc();
+            #endregion
         }
 
-        /// <summary>
-        /// Расчет формул
-        /// </summary>
-        public void CalculateFunc()
+        private void CalculateFunc()
         {
             #region Среднее арифметическое
             double sumForAvg20 = 0;
@@ -89,16 +73,6 @@ namespace ForecastApp.ViewModels.Pages
             ErrorForecast = sumForAbsAvg / listAbs.Count;
 
             #endregion
-        }
-
-        private static string _coefficient;
-        /// <summary>
-        /// Коэффициент повышения/снижения прогноза
-        /// </summary>
-        public string Сoefficient
-        {
-            get => _coefficient;
-            set => Set(ref _coefficient, value);
         }
 
         private static double _avg20;
@@ -198,31 +172,5 @@ namespace ForecastApp.ViewModels.Pages
             set => Set(ref _dateEnd, value);
         }
 
-        
-        private ICommand _addCoefficient;
-        /// <summary>
-        /// Команда для добавления коэффициэнта
-        /// </summary>
-        public ICommand AddCoefficient
-        {
-            get
-            {
-                _addCoefficient = new AddCoefficientCommand(this);
-                return _addCoefficient;
-            }
-        }
-
-        private ICommand _updateStatisticInfo;
-        /// <summary>
-        /// Команда для обновления расчета формул
-        /// </summary>
-        public ICommand UpdateStatisticInfo
-        {
-            get
-            {
-                _updateStatisticInfo = new UpdateStatisticInfoCommand(this);
-                return _updateStatisticInfo;
-            }
-        }
     }
 }
