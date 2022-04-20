@@ -169,15 +169,16 @@
                                         Height="auto"
                                     materialDesign:ShadowAssist.ShadowDepth="Depth1"
                                     Margin="0 0 0 20"
-                                        Padding="20 0 0 20">
+                                        Padding="20 20 20 20">
                                     <StackPanel
                             Orientation="Horizontal">
                                         <StackPanel
                                             Orientation="Vertical"
-                                            Margin="20">
+                                            VerticalAlignment="Center"
+                                            Margin="0 0 0 0">
                                             <ComboBox
                                             VerticalAlignment="Top"
-                                            Margin="25"
+                                            Margin="20"
                                                     FontSize="14"
                                             Style="{StaticResource MaterialDesignFloatingHintComboBox}"
                                             materialDesign:TextFieldAssist.HasClearButton="True"
@@ -193,7 +194,7 @@
                                             </ComboBox>
                                             <ComboBox
                                             VerticalAlignment="Top"
-                                            Margin="25"
+                                            Margin="20"
                                                     FontSize="14"
                                             Style="{StaticResource MaterialDesignFloatingHintComboBox}"
                                             materialDesign:TextFieldAssist.HasClearButton="True"
@@ -210,23 +211,46 @@
                                         </StackPanel>
                                         <StackPanel
                                             Orientation="Vertical"
-                                            Margin="20">
+                                            VerticalAlignment="Center"
+                                            Margin="0 0 0 0">
                                             <DatePicker
-                                            Margin="25 25 25 25"
+                                            Margin="10"
                                             SelectedDate="{Binding Path=DateStart}"
                                           materialDesign:HintAssist.Hint="Дата начала периода"
                                           Style="{StaticResource MaterialDesignOutlinedDatePicker}"/>
 
                                             <DatePicker
-                                            Margin="25 25 25 25"
+                                            Margin="10"
                                             SelectedDate="{Binding Path=DateEnd}"
                                           materialDesign:HintAssist.Hint="Дата окончания периода"
                                           Style="{StaticResource MaterialDesignOutlinedDatePicker}" />
                                         </StackPanel>
-                                        
-                                        <Button x:Name="btnUpdate"
+                                        <StackPanel
+                                            Orientation="Vertical"
+                                            VerticalAlignment="Center"
+                                            Margin="0 0 0 0">
+                                            <CheckBox
+                                                Margin="10"
+                                            IsChecked="{Binding Path=CheckQty20}"
+                                                Content="Факт продаж&#10;на текущий год">
+                                            </CheckBox>
+                                            <CheckBox
+                                                Content="Факт продаж&#10;на прошлый год"
+                                                Margin="10"
+                                            IsChecked="{Binding Path=CheckQty19}">
+                                            </CheckBox>
+                                            <CheckBox
+                                                Content="Прогноз&#10;на текущий год"
+                                                Margin="10"
+                                            IsChecked="{Binding Path=CheckForecast20}">
+                                            </CheckBox>
+                                            
+                                        </StackPanel>
+                                        <Button
+                                            Margin="10"
                                         Style="{StaticResource MaterialDesignFloatingActionDarkButton}"
-                                        ToolTip="MaterialDesignFloatingActionDarkButton" Click="btnUpdate_Click">
+                                        ToolTip="MaterialDesignFloatingActionDarkButton"
+                                            Command="{Binding Path=UpdateIndicatorsCompany}">
                                             <materialDesign:PackIcon
                                         Kind="Update"
                                         

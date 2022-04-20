@@ -133,6 +133,8 @@
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Forecast_Model.cs" />
+    <Compile Include="Services\Commands\IndicatorsCompany\MyCommand.cs" />
+    <Compile Include="Services\Commands\IndicatorsCompany\UpdateIndicatorsCompanyCommand.cs" />
     <Compile Include="Services\Commands\StatisticInfo\AddCoefficientCommand.cs" />
     <Compile Include="Services\Commands\Base\Command.cs" />
     <Compile Include="Services\Commands\MenuClick\MyCommand.cs" />

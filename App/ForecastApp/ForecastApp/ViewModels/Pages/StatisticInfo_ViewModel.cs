@@ -18,7 +18,20 @@ namespace ForecastApp.ViewModels.Pages
         private Forecast_DataModel _dataModel = new Forecast_DataModel();
         public StatisticInfo_ViewModel()
         {
-            #region Загрузка данных
+            this.LoadData();
+            this.CalculateFunc();
+        }
+
+        /// <summary>
+        /// Загрузка данных
+        /// </summary>
+        public void LoadData()
+        {
+            if(ItemDataList != null)
+                ItemDataList.Clear();
+            if (InventLocationList != null)
+                InventLocationList.Clear();
+
             ItemDataList = new List<string>(_indicatorsModel
                 .GetAllItem(_indicatorsModel
                 .GetAllId()));
@@ -30,10 +43,11 @@ namespace ForecastApp.ViewModels.Pages
             if (InventLocationList.Count > 0)
                 InventLocationIdSelected = InventLocationList.First();
 
-            this.CalculateFunc();
-            #endregion
         }
 
+        /// <summary>
+        /// Расчет формул
+        /// </summary>
         public void CalculateFunc()
         {
             #region Среднее арифметическое
@@ -184,10 +198,11 @@ namespace ForecastApp.ViewModels.Pages
             set => Set(ref _dateEnd, value);
         }
 
+        
+        private ICommand _addCoefficient;
         /// <summary>
         /// Команда для добавления коэффициэнта
         /// </summary>
-        private ICommand _addCoefficient;
         public ICommand AddCoefficient
         {
             get
@@ -198,6 +213,9 @@ namespace ForecastApp.ViewModels.Pages
         }
 
         private ICommand _updateStatisticInfo;
+        /// <summary>
+        /// Команда для обновления расчета формул
+        /// </summary>
         public ICommand UpdateStatisticInfo
         {
             get

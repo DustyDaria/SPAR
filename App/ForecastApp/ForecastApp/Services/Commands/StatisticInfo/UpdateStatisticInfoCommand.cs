@@ -12,10 +12,6 @@ namespace ForecastApp.Services.Commands.StatisticInfo
 {
     internal class UpdateStatisticInfoCommand : MyCommand
     {
-        private Forecast_Model _model = new Forecast_Model();
-        private Forecast_DataModel _dataModel = new Forecast_DataModel();
-        Entities.ForecastEntities _context = new Entities.ForecastEntities();
-
         public UpdateStatisticInfoCommand(StatisticInfo_ViewModel _viewModel) : base(_viewModel) { }
         public override bool CanExecute(object parameter) => true;
         public override void Execute(object parameter) => UpdateData();
