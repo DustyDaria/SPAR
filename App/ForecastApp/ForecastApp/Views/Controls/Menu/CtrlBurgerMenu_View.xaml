@@ -1,0 +1,158 @@
+﻿<UserControl x:Class="ForecastApp.Views.Controls.Menu.CtrlBurgerMenu_View"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ForecastApp.Views.Controls.Menu"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:vm="clr-namespace:ForecastApp.ViewModels.Controls.Menu" 
+             xmlns:services="clr-namespace:ForecastApp.Services"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+             mc:Ignorable="d" >
+    <UserControl.DataContext>
+        <vm:CtrlBurgerMenu_ViewModel/>
+    </UserControl.DataContext>
+
+    <UserControl.Resources>
+
+        <Storyboard x:Key="MenuOpen">
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetProperty="(FrameworkElement.Width)"
+                Storyboard.TargetName="GridMenu">
+                <EasingDoubleKeyFrame
+                    KeyTime="0"
+                    Value="70"/>
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:0.5"
+                    Value="250"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="MenuClose">
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetProperty="(FrameworkElement.Width)"
+                Storyboard.TargetName="GridMenu">
+                <EasingDoubleKeyFrame
+                    KeyTime="0"
+                    Value="250"/>
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:0.5"
+                    Value="70"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+    </UserControl.Resources>
+
+    <UserControl.Triggers>
+        <EventTrigger
+            RoutedEvent="ButtonBase.Click"
+            SourceName="btn_OpenMenu">
+            <BeginStoryboard Storyboard="{StaticResource MenuOpen}"/>
+        </EventTrigger>
+
+        <EventTrigger
+            RoutedEvent="ButtonBase.Click"
+            SourceName="btn_CloseMenu">
+            <BeginStoryboard Storyboard="{StaticResource MenuClose}"/>
+        </EventTrigger>
+    </UserControl.Triggers>
+    
+    <Grid
+        x:Name="GridMenu" 
+            Width="70" 
+            HorizontalAlignment="Left" 
+            Background="#087f23">
+        <StackPanel>
+            <Grid 
+                    Height="150" 
+                    Background="#c4001d">
+                <Button 
+                        x:Name="btn_CloseMenu"
+                        Width="70" 
+                        Height="70" 
+                        Click="btn_CloseMenu_Click"
+                        Background="{x:Null}" 
+                        BorderBrush="{x:Null}" 
+                        VerticalAlignment="Top" 
+                        HorizontalAlignment="Right"
+                        Visibility="Collapsed">
+                    <materialDesign:PackIcon 
+                            Foreground="#000000"
+                            Kind="ArrowLeft"
+                            Width="25"
+                            Height="25"/>
+                </Button>
+                <Button 
+                        x:Name="btn_OpenMenu"
+                        Width="70" 
+                        Height="70" 
+                        Click="btn_OpenMenu_Click"
+                        Background="{x:Null}" 
+                        BorderBrush="{x:Null}" 
+                        VerticalAlignment="Top" 
+                        HorizontalAlignment="Right">
+                    <materialDesign:PackIcon 
+                            Foreground="#000000"
+                            Kind="Menu"
+                            Width="30"
+                            Height="30"/>
+                </Button>
+            </Grid>
+            <ListView 
+                    Foreground="#000000"
+                    FontSize="16"
+                    ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                    ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                <ListViewItem 
+                        x:Name="indicators_company_item"
+                        Height="Auto"
+                        Padding="3"
+                    Visibility="Visible">
+                    <ListViewItem.InputBindings>
+                        <MouseBinding Command="{Binding Path=OpenIndicatorsCompanyView}"
+                                      CommandParameter="{Binding}"
+                                      MouseAction="LeftClick"/>
+                    </ListViewItem.InputBindings>
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon 
+                                Margin="10"
+                                Kind="Company" 
+                                Width="30" 
+                                Height="30"
+                                VerticalAlignment="Center"/>
+                        <TextBlock 
+                                Height="auto"
+                                Text="Показатели&#10;компании" 
+                                VerticalAlignment="Center" 
+                                Margin="20 10"/>
+                    </StackPanel>
+
+                </ListViewItem>
+
+                <ListViewItem
+                        x:Name="statistic_info_item"
+                        Height="auto"
+                        Padding="3"
+                    Visibility="Visible">
+                    <ListViewItem.InputBindings>
+                        <MouseBinding Command="{Binding Path=OpenStatisticInfoView}"
+                                      CommandParameter="{Binding}"
+                                      MouseAction="LeftClick"/>
+                    </ListViewItem.InputBindings>
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon  
+                                Margin="10"
+                                Kind="Information" 
+                                Width="30" 
+                                Height="30"
+                                VerticalAlignment="Center"/>
+                        <TextBlock 
+                                Height="auto"
+                                Text="Информация&#10;о статистиках" 
+                                VerticalAlignment="Center" 
+                                Margin="20 10"/>
+                    </StackPanel>
+                </ListViewItem>
+            </ListView>
+        </StackPanel>
+
+    </Grid>
+</UserControl>
