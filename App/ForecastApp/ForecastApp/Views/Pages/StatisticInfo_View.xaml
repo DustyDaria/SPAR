@@ -37,7 +37,7 @@
                 Margin="20 0 10 0"
                 Style="{StaticResource MaterialDesignFloatingActionDarkButton}"
                 ToolTip="MaterialDesignFloatingActionDarkButton"
-                Click="Button_Click_1">
+                Command="{Binding Path=UpdateStatisticInfo}">
                         <materialDesign:PackIcon
                  Kind="Update"
                  Height="24"

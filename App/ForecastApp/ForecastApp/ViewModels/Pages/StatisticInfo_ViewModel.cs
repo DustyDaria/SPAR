@@ -34,7 +34,7 @@ namespace ForecastApp.ViewModels.Pages
             #endregion
         }
 
-        private void CalculateFunc()
+        public void CalculateFunc()
         {
             #region Среднее арифметическое
             double sumForAvg20 = 0;
@@ -194,6 +194,16 @@ namespace ForecastApp.ViewModels.Pages
             {
                 _addCoefficient = new AddCoefficientCommand(this);
                 return _addCoefficient;
+            }
+        }
+
+        private ICommand _updateStatisticInfo;
+        public ICommand UpdateStatisticInfo
+        {
+            get
+            {
+                _updateStatisticInfo = new UpdateStatisticInfoCommand(this);
+                return _updateStatisticInfo;
             }
         }
     }

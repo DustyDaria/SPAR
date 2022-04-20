@@ -27,6 +27,11 @@ namespace ForecastApp.Services.Commands.StatisticInfo
             {
                 _dataModel.FullItemName = _viewModel.ItemDataSelected;
                 double coef = Convert.ToDouble(_viewModel.Сoefficient);
+                if(coef == null || coef == 0)
+                {
+                    MessageBox.Show("Необходимо ввести коэффициент Не равный нулю.");
+                    return;
+                }
 
                 var listId = _model.GetAllIdForAddCoefficient(_dataModel.itemId,
                     _viewModel.InventLocationIdSelected, _viewModel.DateStart,

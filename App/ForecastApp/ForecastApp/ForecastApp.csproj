@@ -139,6 +139,7 @@
     <Compile Include="Services\Commands\MenuClick\OpenIndicatorsCompanyViewCommand.cs" />
     <Compile Include="Services\Commands\MenuClick\OpenStatisticInfoViewCommand.cs" />
     <Compile Include="Services\Commands\StatisticInfo\MyCommand.cs" />
+    <Compile Include="Services\Commands\StatisticInfo\UpdateStatisticInfoCommand.cs" />
     <Compile Include="Services\PageManager.cs" />
     <Compile Include="ViewModels\Base\ViewModel.cs" />
     <Compile Include="ViewModels\Controls\Menu\CtrlBurgerMenu_ViewModel.cs" />
