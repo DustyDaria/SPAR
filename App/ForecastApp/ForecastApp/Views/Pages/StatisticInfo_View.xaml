@@ -8,8 +8,7 @@
       xmlns:vm="clr-namespace:ForecastApp.ViewModels.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="800" 
-      d:DesignWidth="1080"
-      Background="WhiteSmoke">
+      d:DesignWidth="1080">
 
     <Page.DataContext>
         <vm:StatisticInfo_ViewModel/>

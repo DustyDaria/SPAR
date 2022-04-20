@@ -59,11 +59,11 @@
         x:Name="GridMenu" 
             Width="70" 
             HorizontalAlignment="Left" 
-            Background="#087f23">
+            Background="#80e27e">
         <StackPanel>
             <Grid 
                     Height="150" 
-                    Background="#c4001d">
+                    Background="Red">
                 <Button 
                         x:Name="btn_CloseMenu"
                         Width="70" 
