@@ -195,7 +195,8 @@
                             Grid.Column="1"
                                     Margin="10 0 10 0"
                                     Style="{StaticResource MaterialDesignFloatingActionDarkButton}"
-                                    ToolTip="MaterialDesignFloatingActionDarkButton"> 
+                                    ToolTip="MaterialDesignFloatingActionDarkButton"
+                                    Click="Button_Click"> 
                                     <materialDesign:PackIcon
                                         Kind="Edit"
                                         Height="24"
@@ -205,7 +206,8 @@
                             Grid.Column="2"
                                     Margin="10 0 10 0"
                                     Style="{StaticResource MaterialDesignFloatingActionDarkButton}"
-                                    ToolTip="MaterialDesignFloatingActionDarkButton">
+                                    ToolTip="MaterialDesignFloatingActionDarkButton"
+                                    Click="Button_Click_1">
                                     <materialDesign:PackIcon
                                         Kind="Update"
                                         Height="24"
