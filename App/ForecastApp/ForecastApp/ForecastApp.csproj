@@ -132,12 +132,16 @@
     <Compile Include="Entities\Forecast.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\IndicatorsCompany_Model.cs" />
-    <Compile Include="Models\StatisticInfo_Model.cs" />
+    <Compile Include="Models\Forecast_Model.cs" />
+    <Compile Include="Services\Commands\IndicatorsCompany\MyCommand.cs" />
+    <Compile Include="Services\Commands\IndicatorsCompany\UpdateIndicatorsCompanyCommand.cs" />
+    <Compile Include="Services\Commands\StatisticInfo\AddCoefficientCommand.cs" />
     <Compile Include="Services\Commands\Base\Command.cs" />
     <Compile Include="Services\Commands\MenuClick\MyCommand.cs" />
     <Compile Include="Services\Commands\MenuClick\OpenIndicatorsCompanyViewCommand.cs" />
     <Compile Include="Services\Commands\MenuClick\OpenStatisticInfoViewCommand.cs" />
+    <Compile Include="Services\Commands\StatisticInfo\MyCommand.cs" />
+    <Compile Include="Services\Commands\StatisticInfo\UpdateStatisticInfoCommand.cs" />
     <Compile Include="Services\PageManager.cs" />
     <Compile Include="ViewModels\Base\ViewModel.cs" />
     <Compile Include="ViewModels\Controls\Menu\CtrlBurgerMenu_ViewModel.cs" />

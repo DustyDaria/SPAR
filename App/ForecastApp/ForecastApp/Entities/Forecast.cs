@@ -27,5 +27,6 @@ namespace ForecastApp.Entities
         public Nullable<double> forecast20 { get; set; }
         public Nullable<double> qty19 { get; set; }
         public int id { get; set; }
+        public Nullable<double> coefficient { get; set; }
     }
 }
