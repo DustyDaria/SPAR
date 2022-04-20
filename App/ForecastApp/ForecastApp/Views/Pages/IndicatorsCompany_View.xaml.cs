@@ -29,5 +29,10 @@ namespace ForecastApp.Views.Pages
         {
             InitializeComponent();
         }
+
+        private void btnUpdate_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("К сожалению на данный момент этот функционал недоступен.");
+        }
     }
 }
